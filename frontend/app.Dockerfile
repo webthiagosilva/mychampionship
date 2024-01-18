@@ -1,4 +1,4 @@
-FROM node:16.18.1 as development
+FROM node:20.11 as development
 
 WORKDIR /var/www/html/frontend
 
