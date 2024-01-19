@@ -1,14 +1,14 @@
 import React from 'react';
+import { ListItem, ListItemIcon, ListItemText, Button } from '@mui/material';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-const SidebarButton = ({ onClick, icon, children }) => {
+const SidebarButton = ({ onClick, text }) => {
 	return (
-		<button
-			onClick={onClick}
-			className="flex items-center py-2 px-3 rounded mb-2 text-lg text-white hover:bg-blue-700 w-full text-center"
-		>
-			{icon && <span className="mr-2">{icon}</span>}
-			{children}
-		</button>
+		<ListItem>
+			<Button onClick={onClick} fullWidth startIcon={<ExitToAppIcon />}>
+				<ListItemText primary={text} />
+			</Button>
+		</ListItem>
 	);
 };
 

@@ -2,12 +2,10 @@ import React from 'react';
 import logo from '@/assets/icons/logo.svg';
 import SidebarMenu from '@/components/molecules/SidebarMenu/SidebarMenu';
 import SidebarButton from '@/components/atoms/SidebarButton/SidebarButton';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '@/hooks/useAuth';
 import logout from '@/services/logoutService';
 import { useNavigate } from 'react-router-dom';
-
+import { Box, Divider, Drawer } from '@mui/material';
 
 const Sidebar = () => {
 	const { setAuthState } = useAuth();
@@ -19,25 +17,20 @@ const Sidebar = () => {
 	};
 
 	return (
-		<aside className="w-80 bg-gray-800 text-white flex flex-col">
-			<div className="flex items-center justify-center h-20">
-				<img src={logo} alt="Logo" className="h-12" />
-			</div>
-
-			<hr className="border-t border-gray-600 -my-1" />
-
-			<SidebarMenu />
-
-			<div className="flex-grow"></div>
-
-			<div className='flex flex-col p-4'>
-				<SidebarButton
-					icon={<FontAwesomeIcon icon={faSignOutAlt} />}
-					onClick={handleLogout}
-				>Sair
-				</SidebarButton>
-			</div>
-		</aside>
+		<Drawer variant="permanent" sx={{ width: 240, '& .MuiDrawer-paper': { width: 240, boxSizing: 'border-box' } }}>
+			<Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+				<Box sx={{ p: 2, display: 'flex', justifyContent: 'center' }}>
+					<img src={logo} alt="Logo" style={{ height: '48px' }} />
+				</Box>
+				<Divider />
+				<SidebarMenu />
+				<Box sx={{ flexGrow: 1 }} />
+				<Divider />
+				<Box sx={{ p: 2 }}>
+					<SidebarButton onClick={handleLogout} text="Sair" />
+				</Box>
+			</Box>
+		</Drawer>
 	);
 };
 

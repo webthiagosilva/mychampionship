@@ -1,22 +1,19 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 
 const SidebarLink = ({ to, icon, children }) => {
 	const location = useLocation();
 	const isActive = location.pathname.includes(to);
 
 	return (
-		<NavLink
-			to={to}
-			className={`flex items-center py-2 px-3 rounded mb-2 text-lg text-white ${
-				isActive ? 'bg-blue-700' : 'hover:bg-blue-700'
-				}`}
-		>
-			{icon && <span className="mr-2">{icon}</span>}
-			{children}
-		</NavLink>
+		<ListItem button component={NavLink} to={to} selected={isActive}>
+			{icon && <ListItemIcon>{icon}</ListItemIcon>}
+			<ListItemText primary={children} />
+		</ListItem>
 	);
 };
 
 export default SidebarLink;
-

@@ -30,12 +30,18 @@ const Routes = () => {
 			),
 		},
 		{
-			path: '/admin/dashboard',
+			path: '/admin',
 			element: (
 				<ProtectedRoute>
 					<AdminPage />
 				</ProtectedRoute>
-			)
+			),
+			children: [
+				{
+					path: 'championship',
+					element: <h1>Admin</h1>,
+				},
+			],
 		}
 	]);
 
