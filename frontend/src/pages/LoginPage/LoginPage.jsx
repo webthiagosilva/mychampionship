@@ -1,32 +1,32 @@
-import React from "react";
-import AuthTemplate from "@/templates/AuthTemplate/AuthTemplate";
-import LoginForm from "@/components/molecules/LoginForm/LoginForm";
-import TextLink from "@/components/atoms/TextLink/TextLink";
-import Logo from "@/assets/icons/logo.svg";
+import React from 'react';
+import AuthTemplate from '@/templates/AuthTemplate/AuthTemplate';
+import LoginForm from '@/components/molecules/LoginForm/LoginForm';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Logo from '@/assets/icons/logo.svg';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
-  return (
-    <AuthTemplate>
-      <div className="flex flex-col items-center justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8 -mt-20">
-        <div className="w-full max-w-lg space-y-8">
-          <div>
-            <img className="mx-auto h-12 w-auto" src={Logo} alt="My Championship" />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Acesse sua conta
-            </h2>
-          </div>
-
-          <LoginForm />
-
-          <div className="mt-4 text-center">
-            <TextLink to="/register" className="font-medium text-blue-600 hover:text-blue-500">
-              Não tem uma conta? Crie uma
-            </TextLink>
-          </div>
-        </div>
-      </div>
-    </AuthTemplate>
-  );
+    return (
+        <AuthTemplate>
+            <Container component="main" maxWidth="xs">
+                <Paper elevation={3} sx={{ p: 4, mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <img src={Logo} alt="My Championship" style={{ height: '48px' }} />
+                    <Typography component="h1" variant="h5" sx={{ mt: 2, mb: 2 }}>
+                        Acesse sua conta
+                    </Typography>
+                    <LoginForm />
+                    <Box mt={2} textAlign="center">
+                        <Link to="/register" style={{ color: '#1976d2' }}>
+                            Não tem uma conta? Crie uma
+                        </Link>
+                    </Box>
+                </Paper>
+            </Container>
+        </AuthTemplate>
+    );
 };
 
 export default LoginPage;

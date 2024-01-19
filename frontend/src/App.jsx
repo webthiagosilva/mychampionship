@@ -1,12 +1,16 @@
-import React from "react";
+import React from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '@/theme';
 import Routes from "@/routes/Routes";
 import AuthContextProvider from "@/contexts/AuthContext";
 
 const App = () => {
 	return (
-		<AuthContextProvider>
-			<Routes />
-		</AuthContextProvider>
+		<ThemeProvider theme={theme}>
+			<AuthContextProvider>
+				<Routes />
+			</AuthContextProvider>
+		</ThemeProvider>
 	);
 };
 

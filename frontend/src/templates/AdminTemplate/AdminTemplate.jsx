@@ -1,18 +1,19 @@
 import React from 'react';
 import Sidebar from '@/components/organisms/Sidebar/Sidebar';
 import Header from '@/components/organisms/Header/Header';
+import { Box } from '@mui/material';
 
 const AdminTemplate = ({ children }) => {
 	return (
-		<div className="flex h-screen bg-gray-100">
+		<Box sx={{ display: 'flex', height: '100vh', bgcolor: 'background.default' }}>
 			<Sidebar />
-			<div className="flex flex-col w-full">
+			<Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
 				<Header />
-				<main className="flex-grow p-4">
+				<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 					{children}
-				</main>
-			</div>
-		</div>
+				</Box>
+			</Box>
+		</Box>
 	);
 };
 

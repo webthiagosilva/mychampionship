@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import Input from "@/components/atoms/Input/Input";
-import Button from "@/components/atoms/Button/Button";
-import register from "@/services/registerService";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { TextField, Button, Box } from '@mui/material';
+import register from '@/services/registerService';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
 	const [name, setName] = useState('');
@@ -13,9 +12,7 @@ const RegisterForm = () => {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-
 		const success = await register(name, email, password, passwordConfirmation);
-
 		if (success) {
 			navigate('/login');
 		} else {
@@ -24,49 +21,57 @@ const RegisterForm = () => {
 	};
 
 	const isFormValid = () => {
-		return name
-			&& email
-			&& password
-			&& password.length >= 6
-			&& password === passwordConfirmation;
-	}
+		return name && email && password && password.length >= 6 && password === passwordConfirmation;
+	};
 
 	return (
-		<form onSubmit={handleSubmit} className="space-y-6">
-			<Input
+		<Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+			<TextField
+				margin="normal"
+				required
+				fullWidth
 				label="Nome"
 				type="text"
-				placeholder="João da Silva"
 				value={name}
 				onChange={e => setName(e.target.value)}
 			/>
-			<Input
+			<TextField
+				margin="normal"
+				required
+				fullWidth
 				label="Email"
 				type="email"
-				placeholder="joaodasilva@hotmail.com"
 				value={email}
 				onChange={e => setEmail(e.target.value)}
 			/>
-			<Input
+			<TextField
+				margin="normal"
+				required
+				fullWidth
 				label="Senha"
 				type="password"
-				placeholder="Uma senha segura"
 				value={password}
 				onChange={e => setPassword(e.target.value)}
 			/>
-			<Input
+			<TextField
+				margin="normal"
+				required
+				fullWidth
 				label="Confirmação de senha"
 				type="password"
-				placeholder="Confirme sua senha"
 				value={passwordConfirmation}
 				onChange={e => setPasswordConfirmation(e.target.value)}
 			/>
 			<Button
 				type="submit"
-				text="Cadastrar"
+				fullWidth
+				variant="contained"
+				sx={{ mt: 3, mb: 2 }}
 				disabled={!isFormValid()}
-			/>
-		</form>
+			>
+				Cadastrar
+			</Button>
+		</Box>
 	);
 };
 
