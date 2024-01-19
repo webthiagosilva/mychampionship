@@ -32,9 +32,9 @@ const LoginForm = () => {
 				onChange={e => setEmail(e.target.value)}
 			/>
 			<Input
-				label="Password"
+				label="Senha"
 				type="password"
-				placeholder="Password"
+				placeholder="Senha"
 				value={password}
 				onChange={e => setPassword(e.target.value)}
 			/>
