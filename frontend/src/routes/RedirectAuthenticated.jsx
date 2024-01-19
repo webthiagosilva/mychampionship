@@ -6,7 +6,7 @@ const RedirectAuthenticated = ({ children }) => {
 	const { isAuthenticated } = useAuth();
 
 	if (isAuthenticated) {
-		return <Navigate to="/admin/dashboard" replace />;
+		return <Navigate to="/admin" replace />;
 	}
 
 	return children;

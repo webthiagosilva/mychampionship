@@ -1,49 +1,55 @@
-import React, { useState } from "react";
-import { redirect } from "react-router-dom";
-import Input from "@/components/atoms/Input/Input";
-import Button from "@/components/atoms/Button/Button";
-import useAuth from "@/hooks/useAuth";
-import login from "@/services/loginService";
+import React, { useState } from 'react';
+import { TextField, Button, Box } from '@mui/material';
+import useAuth from '@/hooks/useAuth';
+import login from '@/services/loginService';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const { setAuthState } = useAuth();
+	const navigate = useNavigate();
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-
 		const result = await login(email, password, setAuthState);
-
 		if (result) {
-			redirect('/admin/dashboard');
+			navigate('/admin');
 		} else {
 			window.alert('Erro ao fazer login, tente novamente.');
 		}
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="space-y-6">
-			<Input
+		<Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+			<TextField
+				margin="normal"
+				required
+				fullWidth
 				label="Email"
 				type="email"
-				placeholder="Email"
 				value={email}
 				onChange={e => setEmail(e.target.value)}
 			/>
-			<Input
-				label="Senha"
+			<TextField
+				margin="normal"
+				required
+				fullWidth
+				label="Password"
 				type="password"
-				placeholder="Senha"
 				value={password}
 				onChange={e => setPassword(e.target.value)}
 			/>
 			<Button
 				type="submit"
-				text="Entrar"
+				fullWidth
+				variant="contained"
+				sx={{ mt: 3, mb: 2 }}
 				disabled={!email || !password}
-			/>
-		</form>
+			>
+				Entrar
+			</Button>
+		</Box>
 	);
 };
 

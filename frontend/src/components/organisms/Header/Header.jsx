@@ -1,10 +1,17 @@
 import React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 
 const Header = () => {
 	return (
-		<header className="bg-blue-800 text-center text-gray-100 p-6">
-			<h1 className="font-bold text-xl">My Championship</h1>
-		</header>
+		<AppBar position="static">
+			<Toolbar>
+				<Typography variant="h6" noWrap>
+					My Championship
+				</Typography>
+			</Toolbar>
+		</AppBar>
 	);
 };
 

@@ -1,10 +1,14 @@
 import React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 const Footer = () => {
 	return (
-		<footer className="bg-blue-950 text-center text-gray-100 p-4 mt-2">
-			<p>© {new Date().getFullYear()} My Championship. All rights reserved.</p>
-		</footer>
+		<Box sx={{ bgcolor: 'primary.dark', p: 2, mt: 2, textAlign: 'center', color: 'white' }}>
+			<Typography variant="body2">
+				© {new Date().getFullYear()} My Championship. All rights reserved.
+			</Typography>
+		</Box>
 	);
 };
 
