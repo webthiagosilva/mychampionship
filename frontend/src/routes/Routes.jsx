@@ -6,6 +6,7 @@ import HomePage from "@/pages/HomePage/HomePage";
 import LoginPage from '@/pages/LoginPage/LoginPage';
 import RegisterPage from "@/pages/RegisterPage/RegisterPage";
 import AdminPage from "@/pages/AdminPage/AdminPage";
+import ChampionshipPage from '../pages/ChampionshipPage/ChampionshipPage';
 
 const Routes = () => {
 	const router = createBrowserRouter([
@@ -39,7 +40,7 @@ const Routes = () => {
 			children: [
 				{
 					path: 'championship',
-					element: <h1>Admin</h1>,
+					element: <ChampionshipPage />,
 				},
 			],
 		}

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TeamsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,11 @@ Route::group(['prefix' => 'v1'], function () {
         Route::delete('/token', [AuthController::class, 'revokeAccessToken'])->middleware('auth:sanctum');
     });
 
+    Route::group(['middleware' => 'auth:sanctum'], function () {
 
+        Route::group(['prefix' => 'teams'], function () {
+            Route::get('/', [TeamsController::class, 'index']);
+            Route::get('/{id}', [TeamsController::class, 'show']);
+        });
+    });
 });

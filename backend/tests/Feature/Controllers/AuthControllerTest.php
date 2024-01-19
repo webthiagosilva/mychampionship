@@ -4,12 +4,11 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class AuthControllerTest extends TestCase
 {
-	use RefreshDatabase, WithoutMiddleware;
+	use WithoutMiddleware;
 
 	public function testMustBeAbleToRegisterNewUserSuccessfully()
 	{
