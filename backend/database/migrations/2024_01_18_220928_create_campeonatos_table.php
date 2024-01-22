@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('campeonatos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
             $table->timestamp('data_inicio')->nullable();
             $table->timestamp('data_fim')->nullable();
             $table->unsignedBigInteger('time_vencedor_id')->nullable();
