@@ -22,7 +22,7 @@ class Game extends Model
 		return $this->belongsTo(Team::class, 'time_casa_id');
 	}
 
-	public function visitingTeam()
+	public function awayTeam()
 	{
 		return $this->belongsTo(Team::class, 'time_visitante_id');
 	}

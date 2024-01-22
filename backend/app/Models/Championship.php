@@ -12,18 +12,18 @@ class Championship extends Model
 		'nome', 'data_inicio', 'data_fim', 'time_vencedor_id',
 	];
 
-	public function times()
+	public function teams()
 	{
 		return $this->belongsToMany(Team::class, 'campeonato_times')
 			->withPivot(['data_inscricao', 'pontos_acumulados']);
 	}
 
-	public function jogos()
+	public function games()
 	{
 		return $this->hasMany(Game::class);
 	}
 
-	public function vencedor()
+	public function winner()
 	{
 		return $this->belongsTo(Team::class, 'time_vencedor_id');
 	}
