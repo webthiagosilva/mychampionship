@@ -7,7 +7,7 @@ const SidebarMenu = () => {
 	return (
 		<div>
 			<SidebarLink to="/admin/championship" icon={<HomeIcon />}>Campeonato</SidebarLink>
-			<SidebarLink to="/admin/historic" icon={<HistoryIcon />}>Histórico</SidebarLink>
+			<SidebarLink to="/admin/championship-historic" icon={<HistoryIcon />}>Histórico</SidebarLink>
 		</div>
 	);
 };
