@@ -14,7 +14,7 @@ const LoginForm = () => {
 		event.preventDefault();
 		const result = await login(email, password, setAuthState);
 		if (result) {
-			navigate('/admin');
+			navigate('/admin/championship');
 		} else {
 			window.alert('Erro ao fazer login, tente novamente.');
 		}
