@@ -18,7 +18,7 @@ services:
     mychampionship-frontend:
         build:
             context: .
-            dockerfile: frontend/app.Dockerfile
+            dockerfile: frontend/deploy.Dockerfile
         image: mychampionship-frontend
         container_name: mychampionship-frontend
         restart: unless-stopped
