@@ -31,7 +31,7 @@ class ChampionshipSimulationService implements ChampionshipInterface
 
 		$this->championshipProgressionService->progressChampionship($championshipId);
 
-		$simulationResult = $this->championshipRepository->getChampionshipDetails($championshipId);
+		$simulationResult = $this->championshipRepository->getChampionshipSimulationDetails($championshipId);
 
 		return $simulationResult;
 	}
