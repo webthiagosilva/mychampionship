@@ -32,6 +32,7 @@ Route::group(['prefix' => 'v1'], function () {
         });
 
         Route::group(['prefix' => 'championships'], function () {
+            Route::get('/', [ChampionshipsController::class, 'index']);
             Route::post('/simulate', [ChampionshipsController::class, 'simulate']);
         });
     });

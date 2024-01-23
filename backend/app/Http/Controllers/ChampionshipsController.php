@@ -18,6 +18,18 @@ class ChampionshipsController extends Controller
 		$this->championshipSimulationService = $championshipSimulationService;
 	}
 
+	public function index(Request $request): JsonResponse
+	{
+		try {
+			$params = $request->all();
+			$result = $this->championshipSimulationService->getChampionships($params);
+		} catch (Exception $e) {
+			return ResponseHelper::error($e->getMessage(), $e->getCode());
+		}
+
+		return ResponseHelper::success($result, 'Championships retrieved successfully');
+	}
+
 	public function simulate(ChampionshipRequest $request): JsonResponse
 	{
 		try {

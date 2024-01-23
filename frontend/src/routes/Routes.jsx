@@ -6,7 +6,8 @@ import HomePage from "@/pages/HomePage/HomePage";
 import LoginPage from '@/pages/LoginPage/LoginPage';
 import RegisterPage from "@/pages/RegisterPage/RegisterPage";
 import AdminPage from "@/pages/AdminPage/AdminPage";
-import ChampionshipPage from '../pages/ChampionshipPage/ChampionshipPage';
+import ChampionshipPage from '@/pages/ChampionshipPage/ChampionshipPage';
+import ChampionshipHistoricPage from '@/pages/ChampionshipHistoricPage/ChampionshipHistoricPage';
 
 const Routes = () => {
 	const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const Routes = () => {
 					path: 'championship',
 					element: <ChampionshipPage />,
 				},
+				{
+					path: 'championship-historic',
+					element: <ChampionshipHistoricPage />,
+				}
 			],
 		}
 	]);
