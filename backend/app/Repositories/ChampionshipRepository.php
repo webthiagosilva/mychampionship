@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class ChampionshipRepository
 {
+	const DEFAULT_ITEMS_PER_PAGE = 3;
+
 	public function getChampionshipById(int $championshipId): ?array
 	{
 		$championship = DB::connection('mysql')
@@ -105,5 +107,40 @@ class ChampionshipRepository
 			->table('campeonatos')
 			->where('id', $championshipId)
 			->update($updateData);
+	}
+
+	public function getChampionshipHistoryDetails(int $page): array
+	{
+		$championships = DB::connection('mysql')
+			->table('campeonatos')
+			->select(
+				'campeonatos.id',
+				'campeonatos.data_inicio',
+				'campeonatos.data_fim',
+				'time_vencedor.nome as nome_time_vencedor'
+			)
+			->join('times as time_vencedor', 'campeonatos.time_vencedor_id', '=', 'time_vencedor.id')
+			->orderBy('campeonatos.data_inicio', 'desc')
+			->paginate(self::DEFAULT_ITEMS_PER_PAGE, ['*'], 'page', $page);
+
+		foreach ($championships as $championship) {
+			$championship->jogos = DB::table('jogos')
+				->join('times as time_casa', 'jogos.time_casa_id', '=', 'time_casa.id')
+				->join('times as time_visitante', 'jogos.time_visitante_id', '=', 'time_visitante.id')
+				->leftJoin('times as time_vencedor', 'jogos.vencedor_id', '=', 'time_vencedor.id')
+				->select(
+					'time_casa.nome as nome_time_casa',
+					'jogos.placar_casa',
+					'time_visitante.nome as nome_time_visitante',
+					'jogos.placar_visitante',
+					'jogos.fase',
+					'time_vencedor.nome as nome_time_vencedor'
+				)
+				->where('jogos.campeonato_id', $championship->id)
+				->orderBy('jogos.fase')
+				->get();
+		}
+
+		return $championships->toArray();
 	}
 }

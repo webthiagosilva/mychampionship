@@ -35,4 +35,11 @@ class ChampionshipSimulationService implements ChampionshipInterface
 
 		return $simulationResult;
 	}
+
+	public function getChampionships(array $data): array
+	{
+		$championships = $this->championshipRepository->getChampionshipHistoryDetails($data['page']);
+
+		return (array) $championships;
+	}
 }
