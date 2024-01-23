@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListItem, ListItemIcon, ListItemText, Button } from '@mui/material';
+import { ListItem, ListItemText, Button } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const SidebarButton = ({ onClick, text }) => {
