@@ -18,7 +18,7 @@ const ChampionshipHistoricPage = () => {
 			const championships = await listChampionships(page, showError, setError);
 			console.log(championships);
 			setChampionships(championships.data);
-			setTotalPages(championships.total);
+			setTotalPages(championships.last_page);
 		};
 		fetchChampionships();
 	}, [page]);
