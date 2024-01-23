@@ -6,7 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 const SidebarLink = ({ to, icon, children }) => {
 	const location = useLocation();
-	const isActive = location.pathname.includes(to);
+	const isActive = location.pathname === to;
 
 	return (
 		<ListItem button component={NavLink} to={to} selected={isActive}>
