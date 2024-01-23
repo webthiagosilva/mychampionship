@@ -7,6 +7,8 @@ use App\Repositories\TeamRepository;
 use App\Services\Game\Strategies\AccumulatedScoreTieBreakerService;
 use App\Services\Game\Strategies\AwayGameTieBreakerService;
 use App\Services\Game\Strategies\RegistrationOrderTieBreakerService;
+use Illuminate\Support\Facades\Process;
+use Illuminate\Process\Exceptions\ProcessFailedException;
 use DateTime;
 use Exception;
 
@@ -14,6 +16,7 @@ class GameResultSimulationService
 {
 	private GameRepository $gameRepository;
 	private TeamRepository $teamRepository;
+
 	private $tieBreakerStrategys = [];
 
 	public function __construct(
@@ -57,10 +60,17 @@ class GameResultSimulationService
 
 	private function simulateGameScore(): array
 	{
-		$homeScore = random_int(0, 10);
-		$awayScore = random_int(0, 10);
+		$scriptPath = base_path('teste.py');
 
-		return [$homeScore, $awayScore];
+		$result = Process::run("python3 $scriptPath");
+
+		if ($result->failed()) throw new ProcessFailedException($result);
+
+		$output = $result->output();
+
+		[$homeScore, $awayScore] = explode(';', $output);
+
+		return [(int) $homeScore, (int) $awayScore];
 	}
 
 	private function updateAccumulatedPoints(array $game, int $homeScore, int $awayScore): void
